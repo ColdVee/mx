@@ -2542,7 +2542,7 @@ class PlayState extends MusicBeatState
 				camGame.visible = false;
 				stageBuild.switchScene();
 				dadOpponent.setCharacter(0, 0, "mxbig");
-				dadOpponent.setPosition(dadOpponent.width/2-(18*6)-2, dadOpponent.height/2-(8*6)+1);
+				dadOpponent.setPosition(dadOpponent.width/2-(16*6)-2, dadOpponent.height/2-(8*6)+1);
 				
 				boyfriend.setPosition(dadOpponent.x, dadOpponent.y);
 				bfPrefix = 'bf-wall';
