@@ -65,8 +65,8 @@ class MainMenuState extends MusicBeatState
 	
 	var thumbnail:FlxSprite;
 
-	var menuItems:Array<String> = ['STORY MODE', 'OPTIONS', 'EXTRAS'];
-	var menuItems2:Array<String> = ['CREDITS', 'RESET SAVE', 'BACK'];
+	var menuItems:Array<String> = ['PLAY  GAME', 'OPTIONS', 'EXTRAS'];
+	var menuItems2:Array<String> = ['RESET SAVE', 'BACK'];
 	var menuItems3:Array<String> = ['WORLD 1', 'WORLD 2', 'BACK'];
 	var curArray:Array<String>;
 	var canSnap:Array<Float> = [];
@@ -142,7 +142,7 @@ class MainMenuState extends MusicBeatState
 		submenu.updateHitbox();
 
 		// submenu group
-		var submenuText = new FlxText(0, 0, 0, 'Are you sure?\n\nPress L+R to confirm', 8);
+		var submenuText = new FlxText(0, 0, 0, 'Are you sure\n\nPress L+R to confirm', 8);
 		submenuText.scrollFactor.set();
 		submenuText.setFormat(Paths.font("pixel_small.ttf"), 5, FlxColor.WHITE, CENTER);
 		submenuText.setGraphicSize(Std.int(submenuText.width * 6));
@@ -381,7 +381,7 @@ class MainMenuState extends MusicBeatState
 						CutsceneState.sceneNum = 3;
 						Main.switchState(this, new CutsceneState());
 					});
-				case "STORY MODE":
+				case "PLAY  GAME":
 					FlxG.sound.play(Paths.sound('stomp'), 1);
 
 					FlxFlicker.flicker(menuItem, 1, 0.05);
@@ -408,7 +408,7 @@ class MainMenuState extends MusicBeatState
 						
 						Main.switchState(this, new PlayState());
 					});
-				case "STORY MODElol":
+				case "PLAY  GAMElol":
 					FlxG.sound.play(Paths.sound('coin'), 1);
 
 					FlxFlicker.flicker(menuItem, 1, 0.05);

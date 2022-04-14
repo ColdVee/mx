@@ -181,7 +181,7 @@ class FreeplayState extends MusicBeatState
 		arrow.antialiasing = false;
 		add(arrow);
 
-		grpName = new FlxText(0, (103 * 6), 0, "STORY MODE", 8);
+		grpName = new FlxText(0, (103 * 6), 0, "PLAY  GAME", 8);
 		grpName.scrollFactor.set();
 		grpName.setFormat(Paths.font("smb1.ttf"), 8);
 		grpName.setGraphicSize(Std.int(grpName.width * 6));
@@ -311,7 +311,7 @@ class FreeplayState extends MusicBeatState
 			addWeeks();
 			FlxG.sound.play(Paths.sound('menu_select'), 1);
 
-			var grpText = (selectedCategory == 0) ? "STORY MODE" : "CHALLENGES";
+			var grpText = (selectedCategory == 0) ? "PLAY  GAME" : "CHALLENGES";
 
 			if (selectedCategory == -1)
 				grpText = "???";

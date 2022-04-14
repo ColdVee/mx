@@ -2929,69 +2929,49 @@ class PlayState extends MusicBeatState
 
 		Highscore.saveSongData(SONG.song, songScore, Timings.ratingIntFinal, Timings.comboDisplay);
 
-		for (i in 0...Main.gameWeeks.length)
+		if (!isStoryMode)
 		{
-			for (j in 0...Main.gameWeeks[i][0].length)
-			{
-				var songName = Main.gameWeeks[i][0][j];
-				if (Highscore.getData(songName)[0] == 0)
-				{
-					allCompleted = false;
-					break;
-				}
-			} 
-		}
-
-		if (allCompleted && !wasCompleted && SONG.song != 'Green-Screen' && SONG.song != 'balls')
-		{
-			Main.switchState(this, new CreditsState());
+			Main.switchState(this, new MainMenuState());
 		}
 		else
 		{
-			if (!isStoryMode)
+			// set the campaign's score higher
+			campaignScore += songScore;
+
+			// remove a song from the story playlist
+			storyPlaylist.remove(storyPlaylist[0]);
+
+			// set up transitions
+			transIn = FlxTransitionableState.defaultTransIn;
+			transOut = FlxTransitionableState.defaultTransOut;
+
+			switch (SONG.song.toLowerCase())
 			{
-				Main.switchState(this, new MainMenuState());
-			}
-			else
-			{
-				// set the campaign's score higher
-				campaignScore += songScore;
+				case 'lethal-lava-lair':
+					CutsceneState.sceneNum = 6;
+					Main.switchState(this, new CutsceneState());
+				case 'koopa-armada':
+					CutsceneState.sceneNum = 7;
+					Main.switchState(this, new CutsceneState());
+				default:
+					// check if there aren't any songs left
+					if ((storyPlaylist.length <= 0) && (!endSongEvent))
+					{
+						// play menu music
+						ForeverTools.resetMenuMusic();
 
-				// remove a song from the story playlist
-				storyPlaylist.remove(storyPlaylist[0]);
+						// change to the menu state
+						Main.switchState(this, new MainMenuState());
 
-				// set up transitions
-				transIn = FlxTransitionableState.defaultTransIn;
-				transOut = FlxTransitionableState.defaultTransOut;
+						// save the week's score if the score is valid
+						if (SONG.validScore)
+							Highscore.saveWeekScore(storyWeek, campaignScore);
 
-				switch (SONG.song.toLowerCase())
-				{
-					case 'lethal-lava-lair':
-						CutsceneState.sceneNum = 6;
-						Main.switchState(this, new CutsceneState());
-					case 'koopa-armada':
-						CutsceneState.sceneNum = 7;
-						Main.switchState(this, new CutsceneState());
-					default:
-						// check if there aren't any songs left
-						if ((storyPlaylist.length <= 0) && (!endSongEvent))
-						{
-							// play menu music
-							ForeverTools.resetMenuMusic();
-
-							// change to the menu state
-							Main.switchState(this, new MainMenuState());
-
-							// save the week's score if the score is valid
-							if (SONG.validScore)
-								Highscore.saveWeekScore(storyWeek, campaignScore);
-
-							// flush the save
-							FlxG.save.flush();
-						}
-						else
-							songEndSpecificActions();
-				}
+						// flush the save
+						FlxG.save.flush();
+					}
+					else
+						songEndSpecificActions();
 			}
 		}
 		//
