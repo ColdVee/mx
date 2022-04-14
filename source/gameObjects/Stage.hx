@@ -92,8 +92,8 @@ class Stage extends FlxTypedGroup<FlxBasic>
 	
 	var chaseBG:FNFSprite;
 	var chaseBGPos:FlxPoint;
-	var legs:FNFSprite;
-	var legsBF:FNFSprite;
+	public var legs:FNFSprite;
+	public var legsBF:FNFSprite;
 	var breakableObjects:FlxTypedGroup<FNFSprite>;
 	
 	public var mxDefPos:FlxPoint;

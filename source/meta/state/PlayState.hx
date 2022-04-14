@@ -213,7 +213,7 @@ class PlayState extends MusicBeatState
 	public var bfDeathVelocity:Float;
 	public var bfDeathPos:Float;
 	public var fakeDeath:Bool;
-	public var disableControls:Bool;
+	public static var disableControls:Bool;
 
 	public var tailsPos:FlxPoint;
 	public var tailsTarget:FlxPoint;
@@ -2576,8 +2576,10 @@ class PlayState extends MusicBeatState
 			if (curStep == 2344)
 			{
 				isChase = false;
-				dadOpponent.animation.curAnim.paused = true;
-				boyfriend.animation.curAnim.paused = true;
+				dadOpponent.animation.curAnim.pause();
+				boyfriend.animation.curAnim.pause();
+				stageBuild.legs.animation.curAnim.pause();
+				stageBuild.legsBF.animation.curAnim.pause();
 				disableControls = true;
 				depressStrums();
 				boyfriend.y -= 4*6;

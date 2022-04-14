@@ -1409,7 +1409,7 @@ class Character extends FNFSprite
 
 	override public function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0):Void
 	{
-		if (!stopAnim)
+		if (!stopAnim && !PlayState.disableControls)
 		{
 			if (animation.getByName(AnimName) != null)
 				super.playAnim(AnimName, Force, Reversed, Frame);
