@@ -32,6 +32,8 @@ using StringTools;
 **/
 class Stage extends FlxTypedGroup<FlxBasic>
 {
+	public var curStep:Int = 0;
+	
 	var halloweenBG:FNFSprite;
 	var phillyCityLights:FlxTypedGroup<FNFSprite>;
 	var phillyTrain:FNFSprite;
@@ -111,6 +113,8 @@ class Stage extends FlxTypedGroup<FlxBasic>
 	var BFlegsTarget:FlxPoint;
 	
 	public var backgroundsArray:Map<String, Dynamic> = [];
+	
+	var pipeEnd:Bool = false;
 
 	var minusBG:FNFSprite;
 	public var bomb:FNFSprite;
@@ -272,115 +276,115 @@ class Stage extends FlxTypedGroup<FlxBasic>
 				//////////OBJECTS MAKING//////////
 				//////////////////////////////////
 				
-				var pipe2:FNFSprite = new FNFSprite(0, -16 * 6).loadGraphic(Paths.image('backgrounds/' + curStage + '/pipe'), true, 117, 81);
-				pipe2.animation.add('idle', [0], 15);
-				pipe2.animation.add('break', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 20, false);
-				pipe2.scrollFactor.set(1, 1);
-				pipe2.antialiasing = false;
-				pipe2.setGraphicSize(Std.int(pipe2.width * 6));
-				pipe2.updateHitbox();
-				pipe2.visible = false;
-				pipe2.ID = 2;
-				breakableObjects.add(pipe2);
-				
-				var solidbrick1:FNFSprite = new FNFSprite(0, 33 * 6).loadGraphic(Paths.image('backgrounds/' + curStage + '/bricksolid'), true, 50, 81);
-				solidbrick1.animation.add('idle', [0], 15);
-				solidbrick1.animation.add('break', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 20, false);
-				solidbrick1.scrollFactor.set(1, 1);
-				solidbrick1.antialiasing = false;
-				solidbrick1.setGraphicSize(Std.int(solidbrick1.width * 6));
-				solidbrick1.updateHitbox();
-				solidbrick1.visible = false;
-				solidbrick1.ID = 3;
-				breakableObjects.add(solidbrick1);
-				
-				var solidbrick2:FNFSprite = new FNFSprite(0, 33 * 6).loadGraphic(Paths.image('backgrounds/' + curStage + '/bricksolid'), true, 50, 81);
-				solidbrick2.animation.add('idle', [0], 15);
-				solidbrick2.animation.add('break', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 20, false);
-				solidbrick2.scrollFactor.set(1, 1);
-				solidbrick2.antialiasing = false;
-				solidbrick2.setGraphicSize(Std.int(solidbrick2.width * 6));
-				solidbrick2.updateHitbox();
-				solidbrick2.visible = false;
-				solidbrick2.ID = 4;
-				breakableObjects.add(solidbrick2);
-				
-				var solidbrick3:FNFSprite = new FNFSprite(0, 17 * 6).loadGraphic(Paths.image('backgrounds/' + curStage + '/bricksolid'), true, 50, 81);
-				solidbrick3.animation.add('idle', [0], 15);
-				solidbrick3.animation.add('break', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 20, false);
-				solidbrick3.scrollFactor.set(1, 1);
-				solidbrick3.antialiasing = false;
-				solidbrick3.setGraphicSize(Std.int(solidbrick3.width * 6));
-				solidbrick3.updateHitbox();
-				solidbrick3.visible = false;
-				solidbrick3.ID = 5;
-				breakableObjects.add(solidbrick3);
-				
-				var solidbrick4:FNFSprite = new FNFSprite(0, 33 * 6).loadGraphic(Paths.image('backgrounds/' + curStage + '/bricksolid'), true, 50, 81);
-				solidbrick4.animation.add('idle', [0], 15);
-				solidbrick4.animation.add('break', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 20, false);
-				solidbrick4.scrollFactor.set(1, 1);
-				solidbrick4.antialiasing = false;
-				solidbrick4.setGraphicSize(Std.int(solidbrick4.width * 6));
-				solidbrick4.updateHitbox();
-				solidbrick4.visible = false;
-				solidbrick4.ID = 6;
-				breakableObjects.add(solidbrick4);
-				
-				var solidbrick5:FNFSprite = new FNFSprite(0, 33 * 6).loadGraphic(Paths.image('backgrounds/' + curStage + '/bricksolid'), true, 50, 81);
-				solidbrick5.animation.add('idle', [0], 15);
-				solidbrick5.animation.add('break', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 20, false);
-				solidbrick5.scrollFactor.set(1, 1);
-				solidbrick5.antialiasing = false;
-				solidbrick5.setGraphicSize(Std.int(solidbrick5.width * 6));
-				solidbrick5.updateHitbox();
-				solidbrick5.visible = false;
-				solidbrick5.ID = 7;
-				breakableObjects.add(solidbrick5);
-				
-				var solidbrick6:FNFSprite = new FNFSprite(0, 17 * 6).loadGraphic(Paths.image('backgrounds/' + curStage + '/bricksolid'), true, 50, 81);
-				solidbrick6.animation.add('idle', [0], 15);
-				solidbrick6.animation.add('break', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 20, false);
-				solidbrick6.scrollFactor.set(1, 1);
-				solidbrick6.antialiasing = false;
-				solidbrick6.setGraphicSize(Std.int(solidbrick6.width * 6));
-				solidbrick6.updateHitbox();
-				solidbrick6.visible = false;
-				solidbrick6.ID = 8;
-				breakableObjects.add(solidbrick6);
-				
-				var emptyblock1:FNFSprite = new FNFSprite(0, -16 * 6).loadGraphic(Paths.image('backgrounds/' + curStage + '/emptybrick'), true, 50, 81);
-				emptyblock1.animation.add('idle', [0], 15);
-				emptyblock1.animation.add('break', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 20, false);
-				emptyblock1.scrollFactor.set(1, 1);
-				emptyblock1.antialiasing = false;
-				emptyblock1.setGraphicSize(Std.int(emptyblock1.width * 6));
-				emptyblock1.updateHitbox();
-				emptyblock1.visible = false;
-				emptyblock1.ID = 9;
-				breakableObjects.add(emptyblock1);
-				
-				var emptyblock2:FNFSprite = new FNFSprite(0, -16 * 6).loadGraphic(Paths.image('backgrounds/' + curStage + '/emptybrick'), true, 50, 81);
-				emptyblock2.animation.add('idle', [0], 15);
-				emptyblock2.animation.add('break', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 20, false);
-				emptyblock2.scrollFactor.set(1, 1);
-				emptyblock2.antialiasing = false;
-				emptyblock2.setGraphicSize(Std.int(emptyblock2.width * 6));
-				emptyblock2.updateHitbox();
-				emptyblock2.visible = false;
-				emptyblock2.ID = 10;
-				breakableObjects.add(emptyblock2);
-				
-				var emptyblock3:FNFSprite = new FNFSprite(0, -16 * 6).loadGraphic(Paths.image('backgrounds/' + curStage + '/emptybrick'), true, 50, 81);
-				emptyblock3.animation.add('idle', [0], 15);
-				emptyblock3.animation.add('break', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 20, false);
-				emptyblock3.scrollFactor.set(1, 1);
-				emptyblock3.antialiasing = false;
-				emptyblock3.setGraphicSize(Std.int(emptyblock3.width * 6));
-				emptyblock3.updateHitbox();
-				emptyblock3.visible = false;
-				emptyblock3.ID = 11;
-				breakableObjects.add(emptyblock3);
+					var pipe2:FNFSprite = new FNFSprite(0, -16 * 6).loadGraphic(Paths.image('backgrounds/' + curStage + '/pipe'), true, 117, 81);
+					pipe2.animation.add('idle', [0], 15);
+					pipe2.animation.add('break', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 20, false);
+					pipe2.scrollFactor.set(1, 1);
+					pipe2.antialiasing = false;
+					pipe2.setGraphicSize(Std.int(pipe2.width * 6));
+					pipe2.updateHitbox();
+					pipe2.visible = false;
+					pipe2.ID = 2;
+					breakableObjects.add(pipe2);
+					
+					var solidbrick1:FNFSprite = new FNFSprite(0, 33 * 6).loadGraphic(Paths.image('backgrounds/' + curStage + '/bricksolid'), true, 50, 81);
+					solidbrick1.animation.add('idle', [0], 15);
+					solidbrick1.animation.add('break', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 20, false);
+					solidbrick1.scrollFactor.set(1, 1);
+					solidbrick1.antialiasing = false;
+					solidbrick1.setGraphicSize(Std.int(solidbrick1.width * 6));
+					solidbrick1.updateHitbox();
+					solidbrick1.visible = false;
+					solidbrick1.ID = 3;
+					breakableObjects.add(solidbrick1);
+					
+					var solidbrick2:FNFSprite = new FNFSprite(0, 33 * 6).loadGraphic(Paths.image('backgrounds/' + curStage + '/bricksolid'), true, 50, 81);
+					solidbrick2.animation.add('idle', [0], 15);
+					solidbrick2.animation.add('break', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 20, false);
+					solidbrick2.scrollFactor.set(1, 1);
+					solidbrick2.antialiasing = false;
+					solidbrick2.setGraphicSize(Std.int(solidbrick2.width * 6));
+					solidbrick2.updateHitbox();
+					solidbrick2.visible = false;
+					solidbrick2.ID = 4;
+					breakableObjects.add(solidbrick2);
+					
+					var solidbrick3:FNFSprite = new FNFSprite(0, 17 * 6).loadGraphic(Paths.image('backgrounds/' + curStage + '/bricksolid'), true, 50, 81);
+					solidbrick3.animation.add('idle', [0], 15);
+					solidbrick3.animation.add('break', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 20, false);
+					solidbrick3.scrollFactor.set(1, 1);
+					solidbrick3.antialiasing = false;
+					solidbrick3.setGraphicSize(Std.int(solidbrick3.width * 6));
+					solidbrick3.updateHitbox();
+					solidbrick3.visible = false;
+					solidbrick3.ID = 5;
+					breakableObjects.add(solidbrick3);
+					
+					var solidbrick4:FNFSprite = new FNFSprite(0, 33 * 6).loadGraphic(Paths.image('backgrounds/' + curStage + '/bricksolid'), true, 50, 81);
+					solidbrick4.animation.add('idle', [0], 15);
+					solidbrick4.animation.add('break', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 20, false);
+					solidbrick4.scrollFactor.set(1, 1);
+					solidbrick4.antialiasing = false;
+					solidbrick4.setGraphicSize(Std.int(solidbrick4.width * 6));
+					solidbrick4.updateHitbox();
+					solidbrick4.visible = false;
+					solidbrick4.ID = 6;
+					breakableObjects.add(solidbrick4);
+					
+					var solidbrick5:FNFSprite = new FNFSprite(0, 33 * 6).loadGraphic(Paths.image('backgrounds/' + curStage + '/bricksolid'), true, 50, 81);
+					solidbrick5.animation.add('idle', [0], 15);
+					solidbrick5.animation.add('break', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 20, false);
+					solidbrick5.scrollFactor.set(1, 1);
+					solidbrick5.antialiasing = false;
+					solidbrick5.setGraphicSize(Std.int(solidbrick5.width * 6));
+					solidbrick5.updateHitbox();
+					solidbrick5.visible = false;
+					solidbrick5.ID = 7;
+					breakableObjects.add(solidbrick5);
+					
+					var solidbrick6:FNFSprite = new FNFSprite(0, 17 * 6).loadGraphic(Paths.image('backgrounds/' + curStage + '/bricksolid'), true, 50, 81);
+					solidbrick6.animation.add('idle', [0], 15);
+					solidbrick6.animation.add('break', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 20, false);
+					solidbrick6.scrollFactor.set(1, 1);
+					solidbrick6.antialiasing = false;
+					solidbrick6.setGraphicSize(Std.int(solidbrick6.width * 6));
+					solidbrick6.updateHitbox();
+					solidbrick6.visible = false;
+					solidbrick6.ID = 8;
+					breakableObjects.add(solidbrick6);
+					
+					var emptyblock1:FNFSprite = new FNFSprite(0, -16 * 6).loadGraphic(Paths.image('backgrounds/' + curStage + '/emptybrick'), true, 50, 81);
+					emptyblock1.animation.add('idle', [0], 15);
+					emptyblock1.animation.add('break', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 20, false);
+					emptyblock1.scrollFactor.set(1, 1);
+					emptyblock1.antialiasing = false;
+					emptyblock1.setGraphicSize(Std.int(emptyblock1.width * 6));
+					emptyblock1.updateHitbox();
+					emptyblock1.visible = false;
+					emptyblock1.ID = 9;
+					breakableObjects.add(emptyblock1);
+					
+					var emptyblock2:FNFSprite = new FNFSprite(0, -16 * 6).loadGraphic(Paths.image('backgrounds/' + curStage + '/emptybrick'), true, 50, 81);
+					emptyblock2.animation.add('idle', [0], 15);
+					emptyblock2.animation.add('break', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 20, false);
+					emptyblock2.scrollFactor.set(1, 1);
+					emptyblock2.antialiasing = false;
+					emptyblock2.setGraphicSize(Std.int(emptyblock2.width * 6));
+					emptyblock2.updateHitbox();
+					emptyblock2.visible = false;
+					emptyblock2.ID = 10;
+					breakableObjects.add(emptyblock2);
+					
+					var emptyblock3:FNFSprite = new FNFSprite(0, -16 * 6).loadGraphic(Paths.image('backgrounds/' + curStage + '/emptybrick'), true, 50, 81);
+					emptyblock3.animation.add('idle', [0], 15);
+					emptyblock3.animation.add('break', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 20, false);
+					emptyblock3.scrollFactor.set(1, 1);
+					emptyblock3.antialiasing = false;
+					emptyblock3.setGraphicSize(Std.int(emptyblock3.width * 6));
+					emptyblock3.updateHitbox();
+					emptyblock3.visible = false;
+					emptyblock3.ID = 11;
+					breakableObjects.add(emptyblock3);
 				
 				//////////////////////////////////
 				//////////OBJECTS END/////////////
@@ -608,6 +612,17 @@ class Stage extends FlxTypedGroup<FlxBasic>
 					if (chaseBGPos.x >= 0)
 					{
 						chaseBGPos.x = -956.95 * 6;
+						if (curStep > 2317)
+						{
+							var endingPipe:FNFSprite = new FNFSprite(0, 0).loadGraphic(Paths.image('backgrounds/' + curStage + '/endpipe'), false, 160, 81);
+							endingPipe.scrollFactor.set(1, 1);
+							endingPipe.antialiasing = false;
+							endingPipe.setGraphicSize(Std.int(endingPipe.width * 6));
+							endingPipe.updateHitbox();
+							backgroundsArray['pipe'] = endingPipe;
+							foreground.add(endingPipe);
+							pipeEnd = true;
+						}
 						jumpedBrick = false;
 						jumpedGap1 = false;
 						jumpedGap2 = false;
@@ -615,95 +630,101 @@ class Stage extends FlxTypedGroup<FlxBasic>
 						
 						for (object in breakableObjects.members)
 						{
-							object.animation.play('idle', true);
+							if (!pipeEnd)
+								object.animation.play('idle', true);
 						}
 					}
 					chaseBG.x = Std.int(chaseBGPos.x / 6) * 6;
+					if (pipeEnd)
+						backgroundsArray['pipe'].x = chaseBG.x;
 					trace(chaseBG.x);
 					
-					for (i in 0...bfJumpBrick.length)
+					if (!pipeEnd)
 					{
-						if (chaseBG.x == bfJumpBrick[i] && !jumpedBrick)
+						for (i in 0...bfJumpBrick.length)
 						{
-							jumpedBrick = true;
-							legsBF.animation.play('jump', true);
-							FlxTween.tween(bfPos, { y: bfTarget.y }, 0.5, {ease: FlxEase.sineOut, onComplete: jumpFallBF});
-							FlxTween.tween(BFlegsPos, { y: BFlegsTarget.y }, 0.5, {ease: FlxEase.sineOut, onComplete: jumpFalllegsBF});
-							if (boyfriend.animation.curAnim.name == 'idle')
-								boyfriend.playAnim('jump', true);
-							boyfriend.isJumping = true;
+							if (chaseBG.x == bfJumpBrick[i] && !jumpedBrick)
+							{
+								jumpedBrick = true;
+								legsBF.animation.play('jump', true);
+								FlxTween.tween(bfPos, { y: bfTarget.y }, 0.5, {ease: FlxEase.sineOut, onComplete: jumpFallBF});
+								FlxTween.tween(BFlegsPos, { y: BFlegsTarget.y }, 0.5, {ease: FlxEase.sineOut, onComplete: jumpFalllegsBF});
+								if (boyfriend.animation.curAnim.name == 'idle')
+									boyfriend.playAnim('jump', true);
+								boyfriend.isJumping = true;
+							}
 						}
-					}
-					
-					for (i in 0...bfJumpGap1.length)
-					{
-						if (chaseBG.x == bfJumpGap1[i] && !jumpedGap1)
+						
+						for (i in 0...bfJumpGap1.length)
 						{
-							jumpedGap1 = true;
-							legsBF.animation.play('jump', true);
-							FlxTween.tween(bfPos, { y: (bfTarget.y + 15 * 6) }, 0.5, {ease: FlxEase.sineOut, onComplete: jumpFallBF});
-							FlxTween.tween(BFlegsPos, { y: (BFlegsTarget.y + 15 * 6)}, 0.5, {ease: FlxEase.sineOut, onComplete: jumpFalllegsBF});
-							if (boyfriend.animation.curAnim.name == 'idle')
-								boyfriend.playAnim('jump', true);
-							boyfriend.isJumping = true;
+							if (chaseBG.x == bfJumpGap1[i] && !jumpedGap1)
+							{
+								jumpedGap1 = true;
+								legsBF.animation.play('jump', true);
+								FlxTween.tween(bfPos, { y: (bfTarget.y + 15 * 6) }, 0.5, {ease: FlxEase.sineOut, onComplete: jumpFallBF});
+								FlxTween.tween(BFlegsPos, { y: (BFlegsTarget.y + 15 * 6)}, 0.5, {ease: FlxEase.sineOut, onComplete: jumpFalllegsBF});
+								if (boyfriend.animation.curAnim.name == 'idle')
+									boyfriend.playAnim('jump', true);
+								boyfriend.isJumping = true;
+							}
 						}
-					}
-					
-					for (i in 0...bfJumpGap2.length)
-					{
-						if (chaseBG.x == bfJumpGap2[i] && !jumpedGap2)
+						
+						for (i in 0...bfJumpGap2.length)
 						{
-							jumpedGap2 = true;
-							legsBF.animation.play('jump', true);
-							FlxTween.tween(bfPos, { y: (bfTarget.y + 25 * 6) }, 0.3, {ease: FlxEase.sineOut, onComplete: bfFallFast});
-							FlxTween.tween(BFlegsPos, { y: (BFlegsTarget.y + 25 * 6)}, 0.3, {ease: FlxEase.sineOut, onComplete: legsFallFast});
-							if (boyfriend.animation.curAnim.name == 'idle')
-								boyfriend.playAnim('jump', true);
-							boyfriend.isJumping = true;
+							if (chaseBG.x == bfJumpGap2[i] && !jumpedGap2)
+							{
+								jumpedGap2 = true;
+								legsBF.animation.play('jump', true);
+								FlxTween.tween(bfPos, { y: (bfTarget.y + 25 * 6) }, 0.3, {ease: FlxEase.sineOut, onComplete: bfFallFast});
+								FlxTween.tween(BFlegsPos, { y: (BFlegsTarget.y + 25 * 6)}, 0.3, {ease: FlxEase.sineOut, onComplete: legsFallFast});
+								if (boyfriend.animation.curAnim.name == 'idle')
+									boyfriend.playAnim('jump', true);
+								boyfriend.isJumping = true;
+							}
 						}
-					}
-					
-					for (i in 0...bfJumpPipe.length)
-					{
-						if (chaseBG.x == bfJumpPipe[i] && !jumpedPipe)
+						
+						for (i in 0...bfJumpPipe.length)
 						{
-							jumpedPipe = true;
-							legsBF.animation.play('jump', true);
-							FlxTween.tween(bfPos, { y: (bfTarget.y + 15 * 6) }, 0.3, {ease: FlxEase.sineOut, onComplete: bfFallFast});
-							FlxTween.tween(BFlegsPos, { y: (BFlegsTarget.y + 15 * 6) }, 0.3, {ease: FlxEase.sineOut, onComplete: legsFallFast});
-							if (boyfriend.animation.curAnim.name == 'idle')
-								boyfriend.playAnim('jump', true);
-							boyfriend.isJumping = true;
+							if (chaseBG.x == bfJumpPipe[i] && !jumpedPipe)
+							{
+								jumpedPipe = true;
+								legsBF.animation.play('jump', true);
+								FlxTween.tween(bfPos, { y: (bfTarget.y + 15 * 6) }, 0.3, {ease: FlxEase.sineOut, onComplete: bfFallFast});
+								FlxTween.tween(BFlegsPos, { y: (BFlegsTarget.y + 15 * 6) }, 0.3, {ease: FlxEase.sineOut, onComplete: legsFallFast});
+								if (boyfriend.animation.curAnim.name == 'idle')
+									boyfriend.playAnim('jump', true);
+								boyfriend.isJumping = true;
+							}
 						}
-					}
-					
-					for (i in 0...jump1Array.length)
-					{
-						if (chaseBG.x == jump1Array[i] && !jumped1)
+						
+						for (i in 0...jump1Array.length)
 						{
-							jumped2 = false;
-							jumped1 = true;
-							legs.animation.play('jump', true);
-							FlxTween.tween(mxPos, { y: mxTarget.y }, 0.4, {ease: FlxEase.sineOut, onComplete: jumpFall});
-							FlxTween.tween(legsPos , { y: legsTarget.y }, 0.4, {ease: FlxEase.sineOut, onComplete: jumpFalllegs});
-							if (dadOpponent.animation.curAnim.name == 'idle')
-								dadOpponent.playAnim('jump', true);
-							dadOpponent.isJumping = true;
+							if (chaseBG.x == jump1Array[i] && !jumped1)
+							{
+								jumped2 = false;
+								jumped1 = true;
+								legs.animation.play('jump', true);
+								FlxTween.tween(mxPos, { y: mxTarget.y }, 0.4, {ease: FlxEase.sineOut, onComplete: jumpFall});
+								FlxTween.tween(legsPos , { y: legsTarget.y }, 0.4, {ease: FlxEase.sineOut, onComplete: jumpFalllegs});
+								if (dadOpponent.animation.curAnim.name == 'idle')
+									dadOpponent.playAnim('jump', true);
+								dadOpponent.isJumping = true;
+							}
 						}
-					}
-					
-					for (i in 0...jump2Array.length)
-					{
-						if (chaseBG.x == jump2Array[i] && !jumped2)
+						
+						for (i in 0...jump2Array.length)
 						{
-							jumped1 = false;
-							jumped2 = true;
-							legs.animation.play('jump', true);
-							FlxTween.tween(mxPos, { y: mxTarget.y }, 0.4, {ease: FlxEase.sineOut, onComplete: jumpFall});
-							FlxTween.tween(legsPos , { y: legsTarget.y }, 0.4, {ease: FlxEase.sineOut, onComplete: jumpFalllegs});
-							if (dadOpponent.animation.curAnim.name == 'idle')
-								dadOpponent.playAnim('jump', true);
-							dadOpponent.isJumping = true;
+							if (chaseBG.x == jump2Array[i] && !jumped2)
+							{
+								jumped1 = false;
+								jumped2 = true;
+								legs.animation.play('jump', true);
+								FlxTween.tween(mxPos, { y: mxTarget.y }, 0.4, {ease: FlxEase.sineOut, onComplete: jumpFall});
+								FlxTween.tween(legsPos , { y: legsTarget.y }, 0.4, {ease: FlxEase.sineOut, onComplete: jumpFalllegs});
+								if (dadOpponent.animation.curAnim.name == 'idle')
+									dadOpponent.playAnim('jump', true);
+								dadOpponent.isJumping = true;
+							}
 						}
 					}
 					
@@ -752,12 +773,16 @@ class Stage extends FlxTypedGroup<FlxBasic>
 						
 						object.x = chaseBG.x + (offset * 6);
 						
-						if (object.x >= (dadOpponent.x - hitboxOfs * 6))
+						if (object.x >= (dadOpponent.x - hitboxOfs * 6) && !pipeEnd)
 						{
 							if (object.animation.curAnim.name != 'break')
 								object.animation.play('break', true);
 						}
 					}
+				} else if (pipeEnd)
+				{
+					legsBF.visible = false;
+					boyfriend.x -= (22 * 6) * elapsed * moveMult;
 				}
 		}
 	}

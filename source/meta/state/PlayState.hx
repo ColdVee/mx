@@ -2483,6 +2483,7 @@ class PlayState extends MusicBeatState
 	override function stepHit()
 	{
 		super.stepHit();
+		stageBuild.curStep = curStep;
 
 		///*
 		if (Math.abs(songMusic.time - Conductor.songPosition) > 20
@@ -2551,7 +2552,7 @@ class PlayState extends MusicBeatState
 				dadOpponent.scrollFactor.set(1, 1);
 			}
 			
-			if (curStep == 1538)
+			if (curStep == 1536)
 			{
 				camGame.visible = true;
 			}
@@ -2570,6 +2571,16 @@ class PlayState extends MusicBeatState
 			if (curStep == 2048)
 			{
 				camGame.visible = true;
+			}
+			
+			if (curStep == 2344)
+			{
+				isChase = false;
+				dadOpponent.animation.curAnim.paused = true;
+				boyfriend.animation.curAnim.paused = true;
+				disableControls = true;
+				depressStrums();
+				boyfriend.y -= 4*6;
 			}
 		}
 		
