@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="bflegs.png">
+	<!-- Created with Adobe Animate version 20.0.3.25487 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="legjump0000" x="20" y="20" width="44" height="47"/>
+	<SubTexture name="legs0000" x="84" y="20" width="44" height="47"/>
+	<SubTexture name="legs0001" x="84" y="20" width="44" height="47"/>
+	<SubTexture name="legs0002" x="84" y="20" width="44" height="47"/>
+	<SubTexture name="legs0003" x="148" y="20" width="44" height="47"/>
+	<SubTexture name="legs0004" x="148" y="20" width="44" height="47"/>
+	<SubTexture name="legs0005" x="148" y="20" width="44" height="47"/>
+	<SubTexture name="legs0006" x="20" y="87" width="44" height="47"/>
+	<SubTexture name="legs0007" x="20" y="87" width="44" height="47"/>
+	<SubTexture name="legs0008" x="20" y="87" width="44" height="47"/>
+	<SubTexture name="legs0009" x="84" y="87" width="44" height="47"/>
+	<SubTexture name="legs0010" x="84" y="87" width="44" height="47"/>
+	<SubTexture name="legs0011" x="84" y="87" width="44" height="47"/>
+</TextureAtlas>
