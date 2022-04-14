@@ -101,7 +101,7 @@ class PauseSubState extends MusicBeatSubState
 		progressBar.antialiasing = false;
 		add(progressBar);
 
-		var mario:FlxSprite = new FlxSprite(0, (56 * 6)).loadGraphic(Paths.image(marioPath), true, 16, 16);
+		var mario:FlxSprite = new FlxSprite(0, (55 * 6)).loadGraphic(Paths.image(marioPath), true, 16, 16);
 		mario.animation.add("walk", [0, 0, 1, 2], 9, true);
 		mario.animation.play("walk");
 
@@ -124,7 +124,7 @@ class PauseSubState extends MusicBeatSubState
 		progressBar.x = Std.int(progressBar.x / 6) * 6;
 
 		mario.x = progressBar.x - (25 * 6);
-		mario.y = progressBar.y - (8 * 6);
+		mario.y = progressBar.y - (9 * 6);
 
 		mario.x -= 2;
 		mario.y += 2;

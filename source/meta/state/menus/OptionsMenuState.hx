@@ -143,7 +143,7 @@ class OptionsMenuState extends MusicBeatState
 		bg2.visible = false;
 		add(bg2);
 
-		warpText = new FlxText((38 * 6), (20 * 6), 0, 'WELCOME TO\nWARP ZONE!', 8);
+		warpText = new FlxText((38 * 6), (20 * 6), 0, '\nWARP ZONE', 8);
 		warpText.scrollFactor.set();
 		warpText.setFormat(Paths.font("smb1.ttf"), 8, FlxColor.WHITE, CENTER);
 		warpText.setGraphicSize(Std.int(warpText.width * 6));

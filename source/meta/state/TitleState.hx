@@ -136,7 +136,7 @@ class TitleState extends MusicBeatState
 		add(logo);
 
 		logoY = -76;
-		bounces = 6;
+		bounces = 2;
 
 		deluxe = new FlxSprite(74 * 6, 44 * 6).loadGraphic(Paths.image('menus/pixel/intro/deluxe'), true, 80, 28);
 		deluxe.animation.add('write', [0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], 14, false);
