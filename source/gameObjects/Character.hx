@@ -1080,6 +1080,24 @@ class Character extends FNFSprite
 				playAnim('idle');
 
 				antialiasing = false;
+			case 'mx-angry':
+				frames = Paths.getSparrowAtlas('characters/mx-angry');
+				animation.addByPrefix('idle', 'idle', 35, true);
+				animation.addByPrefix('singUP', 'up', 30, false);
+				animation.addByPrefix('singLEFT', 'left', 30, false);
+				animation.addByPrefix('singRIGHT', 'right', 30, false);
+				animation.addByPrefix('singDOWN', 'down', 30, false);
+				animation.addByPrefix('jump', 'jump', 30, true);
+				addOffset('idle', 0, 6);
+				addOffset('down', 0, -8);
+				addOffset('jump', 0, -8);
+
+				setGraphicSize(Std.int(width * 6));
+				updateHitbox();
+
+				playAnim('idle');
+
+				antialiasing = false;
 				
 			case 'mxbig':
 				frames = Paths.getSparrowAtlas('characters/bigmx');
@@ -1363,22 +1381,12 @@ class Character extends FNFSprite
 		{
 			var frame:Int = 0;
 			var curCharSimplified:String = simplifyCharacter();
-			if (curCharSimplified == 'mx')
+			if (curCharSimplified == 'mx' || curCharacter == 'mx-angry')
 			frame = PlayState.legFrame;
 			if (curCharSimplified.startsWith('bf-chase'))
 			frame = PlayState.bfLegFrame;
 			switch (curCharSimplified)
 			{
-				case 'gf':
-					if ((!animation.curAnim.name.startsWith('hair')) && (!animation.curAnim.name.startsWith('sad')))
-					{
-						danced = !danced;
-
-						if (danced)
-							playAnim('danceRight', forced);
-						else
-							playAnim('danceLeft', forced);
-					}
 				default:
 					// Left/right dancing, think Skid & Pump
 					if (animation.getByName('danceLeft') != null && animation.getByName('danceRight') != null)

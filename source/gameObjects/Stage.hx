@@ -96,6 +96,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
 	public var legs:FNFSprite;
 	public var legsBF:FNFSprite;
 	public var legsPrefix:String = '';
+	public var madPrefix:String = '';
 	var breakableObjects:FlxTypedGroup<FNFSprite>;
 	
 	public var mxDefPos:FlxPoint;
@@ -250,6 +251,13 @@ class Stage extends FlxTypedGroup<FlxBasic>
 				PlayState.isChase = false;
 				curStage = 'pcport';
 				
+				var blackScreen:FlxSprite = new FlxSprite(0, 0).makeGraphic(Std.int(FlxG.width * 4), Std.int(FlxG.height * 4), FlxColor.BLACK);
+				blackScreen.visible = false;
+				blackScreen.screenCenter();
+				backgroundsArray['black'] = blackScreen;
+				foreground.add(blackScreen);
+				blackScreen.scrollFactor.set();
+				
 				var bg:FNFSprite = new FNFSprite(0, 0).loadGraphic(Paths.image('backgrounds/' + curStage + '/goal'), false, 256, 240);
 				bg.scrollFactor.set(1, 1);
 				bg.antialiasing = false;
@@ -265,6 +273,21 @@ class Stage extends FlxTypedGroup<FlxBasic>
 				luigi.updateHitbox();
 				luigi.visible = false;
 				foreground.add(luigi);
+				
+				var popup:FNFSprite = new FNFSprite(0, 0).loadGraphic(Paths.image('backgrounds/' + curStage + '/popup'), true, 160, 81);
+				popup.animation.add('innocence', [0], 60);
+				popup.animation.add('doesnt', [1], 60);
+				popup.animation.add('get', [2], 60);
+				popup.animation.add('you', [3], 60);
+				popup.animation.add('far', [4], 60);
+				popup.animation.play('innocence', true);
+				popup.scrollFactor.set(1, 1);
+				popup.antialiasing = false;
+				popup.setGraphicSize(Std.int(popup.width * 6));
+				popup.updateHitbox();
+				popup.visible = false;
+				backgroundsArray['popup'] = popup;
+				foreground.add(popup);
 				
 				chaseBG = new FNFSprite(-956.95 * 6, 0).loadGraphic(Paths.image('backgrounds/' + curStage + '/loop'), false, 160, 81);
 				chaseBG.scrollFactor.set(1, 1);
@@ -411,8 +434,9 @@ class Stage extends FlxTypedGroup<FlxBasic>
 				legs = new FNFSprite();
 				legs.frames = Paths.getSparrowAtlas('backgrounds/' + curStage + '/legs');
 				legs.animation.addByPrefix('idle', 'legs', 60, true);
+				legs.animation.addByPrefix('idle-mad', 'runmad', 35, true);
 				legs.animation.addByPrefix('jump', 'legjump', 55, true);
-				legs.animation.play('idle');
+				legs.animation.play('idle'+madPrefix);
 				legs.setGraphicSize(Std.int(legs.width * 6));
 				legs.updateHitbox();
 				legs.scrollFactor.set(1, 1);
@@ -594,6 +618,16 @@ class Stage extends FlxTypedGroup<FlxBasic>
 						flagPole.updateHitbox();
 						backgroundsArray['flagPole'] = flagPole;
 						add(flagPole);
+						
+						var brickScroll:FNFSprite = new FNFSprite(0, 0).loadGraphic(Paths.image('backgrounds/' + curStage + '/brickscroll'), false, 160, 81);
+						brickScroll.scrollFactor.set(1, 1);
+						brickScroll.antialiasing = false;
+						brickScroll.setGraphicSize(Std.int(brickScroll.width * 6));
+						brickScroll.updateHitbox();
+						brickScroll.visible = false;
+						backgroundsArray['brickScroll'] = brickScroll;
+						add(brickScroll);
+						
 						legs.setPosition(dadOpponent.x - 126 - 58, dadOpponent.y - 88 + 2 - 48 - 13);
 						legsBF.setPosition(boyfriend.x - 2.9 - (19 * 6), boyfriend.y - (20 * 6) + 2.9 - 6);
 						
@@ -635,6 +669,9 @@ class Stage extends FlxTypedGroup<FlxBasic>
 					{
 						chaseBGPos.x = -956.95 * 6;
 						
+						if (backgroundsArray['brickScroll'].visible == false)
+							backgroundsArray['brickScroll'].visible = true;
+						
 						if (backgroundsArray['flagPole'] != null)
 							backgroundsArray['flagPole'].kill();
 						if (curStep > 2317)
@@ -664,6 +701,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
 						backgroundsArray['pipe'].x = chaseBG.x;
 					if (backgroundsArray['flagPole'] != null)
 						backgroundsArray['flagPole'].x = chaseBG.x;
+					backgroundsArray['brickScroll'].x = chaseBG.x;
 					trace(chaseBG.x);
 					
 					if (!pipeEnd)
@@ -757,13 +795,6 @@ class Stage extends FlxTypedGroup<FlxBasic>
 					
 					legsBF.alpha = boyfriend.alpha;
 					
-					boyfriend.y = bfPos.y;
-					legsBF.y = BFlegsPos.y;
-					dadOpponent.y = Std.int(mxPos.y / 6) * 6;
-					dadOpponent.y += 3.4;
-					legs.y = Std.int(legsPos.y / 6) * 6;
-					legs.y += 1.2;
-					
 					for (object in breakableObjects.members)
 					{
 						var offset:Float = 0;
@@ -808,6 +839,14 @@ class Stage extends FlxTypedGroup<FlxBasic>
 								object.animation.play('break', true);
 						}
 					}
+					
+					boyfriend.y = Std.int(bfPos.y / 6) * 6 + 3.5;
+					legsBF.y = Std.int(boyfriend.y - (bfDefPos.y - BFlegsDefPos.y));
+					
+					dadOpponent.y = Std.int(mxPos.y / 6) * 6;
+					dadOpponent.y += 3.4;
+					legs.y = Std.int(legsPos.y / 6) * 6;
+					legs.y += 1.2;
 				} else if (pipeEnd)
 				{
 					legsBF.visible = false;
@@ -864,7 +903,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
 		FlxTween.tween(legsPos, { y: legsDefPos.y}, 0.4, {ease: FlxEase.sineIn, onComplete: 
 			function(tween:FlxTween)
 			{
-				legs.animation.play('idle', true);
+				legs.animation.play('idle'+madPrefix, true);
 			}
 		});
 	}
