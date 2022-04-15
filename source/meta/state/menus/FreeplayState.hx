@@ -482,7 +482,7 @@ class FreeplayState extends MusicBeatState
 		{
 			bullShit++;
 
-			item.color = 0xE69C21;
+			item.color = 0xC8913E;
 			// item.setGraphicSize(Std.int(item.width * 0.8));
 
 			if (curSelected == bullShit - 1)

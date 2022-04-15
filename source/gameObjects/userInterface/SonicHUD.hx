@@ -228,7 +228,7 @@ class SonicHUD extends FlxTypedGroup<FlxBasic>
 		for (scoreNum in scoreGroup)
 		{
 			scoreNum.animation.frameIndex = Std.parseInt(scoreText.charAt(index));
-			scoreNum.color = (isNegative) ? 0xB53120 : 0xFFFFFF;
+			scoreNum.color = (isNegative) ? 0x822E24 : 0xFFFFFF;
 			index += 1;
 		}
 

@@ -205,7 +205,7 @@ class Mari0HUD extends FlxTypedGroup<FlxBasic>
 		var isNegative:Bool = false;
 		if (scoreBar.text.charAt(0) == "-") 
 		{
-			scoreBar.color = 0xB53120;
+			scoreBar.color = 0x822E24;
 			scoreBar.text = scoreBar.text.substr(1);
 		}
 		else

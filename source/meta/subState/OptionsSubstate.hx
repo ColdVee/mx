@@ -125,7 +125,7 @@ class OptionsSubstate extends MusicBeatSubState
 		submenuoffsetGroup.add(submenuOffsetText4);
 
 		submenuOffsetValue = new FlxText(0, 0, 0, "< 0ms >", 8, false);
-		submenuOffsetValue.setFormat(Paths.font("smb1.ttf"), 8, 0xE69C21, CENTER);
+		submenuOffsetValue.setFormat(Paths.font("smb1.ttf"), 8, 0xC8913E, CENTER);
 		submenuOffsetValue.setGraphicSize(Std.int(submenuOffsetValue.width * 6));
 		submenuOffsetValue.updateHitbox();
 
@@ -167,7 +167,7 @@ class OptionsSubstate extends MusicBeatSubState
 			optionsText.setFormat(Paths.font("pixel_small.ttf"), 5, FlxColor.WHITE, LEFT);
 			optionsText.setGraphicSize(Std.int(optionsText.width * 6));
 			optionsText.updateHitbox();
-			optionsText.color = 0xE69C21;
+			optionsText.color = 0xC8913E;
 
 			keyOptions.add(optionsText);
 		}
@@ -199,7 +199,7 @@ class OptionsSubstate extends MusicBeatSubState
 				secondaryText.setFormat(Paths.font("pixel_small.ttf"), 5, FlxColor.WHITE, LEFT);
 				secondaryText.setGraphicSize(Std.int(secondaryText.width * 6));
 				secondaryText.updateHitbox();
-				secondaryText.color = 0xE69C21;
+				secondaryText.color = 0xC8913E;
 
 				// secondaryText.controlGroupID = i;
 				// secondaryText.extensionJ = j;
@@ -238,7 +238,7 @@ class OptionsSubstate extends MusicBeatSubState
 		//
 		for (i in 0...keyOptions.length)
 		{
-			keyOptions.members[i].color = 0xE69C21;
+			keyOptions.members[i].color = 0xC8913E;
 			//keyOptions.members[i].targetY = (i - curSelection) / 2;
 		}
 		keyOptions.members[curSelection].color = 0xFFFFFF;
@@ -246,7 +246,7 @@ class OptionsSubstate extends MusicBeatSubState
 		///*
 		for (i in 0...otherKeys.length)
 		{
-			otherKeys.members[i].color = 0xE69C21;
+			otherKeys.members[i].color = 0xC8913E;
 			//otherKeys.members[i].targetY = (((Math.floor(i / 2)) - curSelection) / 2) - 0.25;
 		}
 		otherKeys.members[(curSelection * 2) + curHorizontalSelection].color = 0xFFFFFF;

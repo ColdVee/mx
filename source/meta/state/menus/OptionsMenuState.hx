@@ -330,9 +330,9 @@ class OptionsMenuState extends MusicBeatState
 		// set the correct group stuffs lol
 		for (i in 0...activeSubgroup.length)
 		{
-			activeSubgroup.members[i].color = 0xE69C21;
+			activeSubgroup.members[i].color = 0xC8913E;
 			if (currentAttachmentMap != null)
-				setAttachmentColor(currentAttachmentMap.get(activeSubgroup.members[i]), 0xE69C21);
+				setAttachmentColor(currentAttachmentMap.get(activeSubgroup.members[i]), 0xC8913E);
 
 			// check for null members and hardcode the dividers
 			if (categoryMap.get(curCategory)[0][i][1] == null) {
