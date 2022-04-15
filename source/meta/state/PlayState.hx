@@ -214,7 +214,7 @@ class PlayState extends MusicBeatState
 	public var bfDeathVelocity:Float;
 	public var bfDeathPos:Float;
 	public var fakeDeath:Bool;
-	public static var disableControls:Bool;
+	public static var disableControls:Bool = false;
 
 	public var tailsPos:FlxPoint;
 	public var tailsTarget:FlxPoint;
@@ -356,8 +356,11 @@ class PlayState extends MusicBeatState
 		marioSwim.setGraphicSize(Std.int(marioSwim.width * 6));
 		marioSwim.updateHitbox();
 		marioSwim.visible = false;
+		
 
 		// set up characters here too
+		disableControls = false;
+		
 		gf = new Character(0, 0, stageBuild.returnGFtype(curStage));
 		gf.scrollFactor.set(1, 1);
 
@@ -2085,12 +2088,14 @@ class PlayState extends MusicBeatState
 			if (allSicks)
 				allSicks = false;
 
+		if (stageBuild.backgroundsArray['black'].visible == false)
 		displayRating(baseRating, timing);
 		Timings.updateAccuracy(Timings.judgementsMap.get(baseRating)[3]);
 		score = Std.int(Timings.judgementsMap.get(baseRating)[2]);
 
 		songScore += score;
 
+		if (stageBuild.backgroundsArray['black'].visible == false)
 		popUpCombo();
 	}
 
@@ -2556,9 +2561,52 @@ class PlayState extends MusicBeatState
 				isChase = true;
 			}
 			
+			if (curStep == 1255)
+			{
+				stageBuild.backgroundsArray['black'].visible = true;
+				stageBuild.backgroundsArray['popup'].visible = true;
+				displayRating('sick', 'sick');
+			}
+			
+			if (curStep == 1263)
+			{
+				stageBuild.backgroundsArray['popup'].animation.play('doesnt', true);
+			}
+			
+			if (curStep == 1266)
+			{
+				stageBuild.backgroundsArray['popup'].animation.play('get', true);
+			}
+			
+			if (curStep == 1268)
+			{
+				stageBuild.backgroundsArray['popup'].animation.play('you', true);
+			}
+			
+			if (curStep == 1270)
+			{
+				stageBuild.backgroundsArray['popup'].animation.play('far', true);
+			}
+			
+			if (curStep == 1276)
+			{
+				stageBuild.backgroundsArray['black'].visible = false;
+				stageBuild.backgroundsArray['popup'].visible = false;
+			}
+			
+			if (curStep == 1400)
+			{
+				dadOpponent.setCharacter(stageBuild.mxDefPos.x, stageBuild.mxDefPos.y, "mx-angry");
+			}
+			
+			if (curStep == 1407)
+			{
+				dadOpponent.setCharacter(stageBuild.mxDefPos.x, stageBuild.mxDefPos.y, "mx");
+			}
+			
 			if (curStep == 1532)
 			{
-				dadOpponent.visible = false;
+				stageBuild.backgroundsArray['black'].visible = true;
 				stageBuild.luigi.visible = true;
 				camHUD.visible = false;
 				stageBuild.switchScene();
@@ -2576,13 +2624,15 @@ class PlayState extends MusicBeatState
 			{
 				camHUD.visible = true;
 				stageBuild.luigi.visible = false;
-				dadOpponent.visible = true;
+				stageBuild.backgroundsArray['black'].visible = false;
 			}
 			
 			if (curStep == 2034)
 			{
 				camGame.visible = false;
-				dadOpponent.setCharacter(stageBuild.mxDefPos.x, stageBuild.mxDefPos.y, "mx");
+				dadOpponent.setCharacter(stageBuild.mxDefPos.x, stageBuild.mxDefPos.y, "mx-angry");
+				stageBuild.madPrefix = '-mad';
+				stageBuild.legs.animation.play('idle-mad');
 				
 				boyfriend.setPosition(stageBuild.bfDefPos.x, stageBuild.bfDefPos.y);
 				bfPrefix = 'bf-chase';
