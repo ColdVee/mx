@@ -91,9 +91,11 @@ class Stage extends FlxTypedGroup<FlxBasic>
 	var cloudsFrontPos:FlxPoint;
 	
 	var chaseBG:FNFSprite;
+	public var luigi:FNFSprite;
 	var chaseBGPos:FlxPoint;
 	public var legs:FNFSprite;
 	public var legsBF:FNFSprite;
+	public var legsPrefix:String = '';
 	var breakableObjects:FlxTypedGroup<FNFSprite>;
 	
 	public var mxDefPos:FlxPoint;
@@ -256,6 +258,14 @@ class Stage extends FlxTypedGroup<FlxBasic>
 				backgroundsArray['bg'] = bg;
 				add(bg);
 				
+				luigi = new FNFSprite(0, -1 * 6).loadGraphic(Paths.image('backgrounds/' + curStage + '/luigi'), false, 160, 81);
+				luigi.scrollFactor.set(1, 1);
+				luigi.antialiasing = false;
+				luigi.setGraphicSize(Std.int(luigi.width * 6));
+				luigi.updateHitbox();
+				luigi.visible = false;
+				foreground.add(luigi);
+				
 				chaseBG = new FNFSprite(-956.95 * 6, 0).loadGraphic(Paths.image('backgrounds/' + curStage + '/loop'), false, 160, 81);
 				chaseBG.scrollFactor.set(1, 1);
 				chaseBG.antialiasing = false;
@@ -411,9 +421,13 @@ class Stage extends FlxTypedGroup<FlxBasic>
 				
 				legsBF = new FNFSprite();
 				legsBF.frames = Paths.getSparrowAtlas('backgrounds/' + curStage + '/bflegs');
-				legsBF.animation.addByPrefix('idle', 'legs', 30, true);
-				legsBF.animation.addByPrefix('jump', 'legjump', 55, true);
-				legsBF.animation.play('idle');
+				legsBF.animation.addByPrefix('runfire', 'runfire', 30, true);
+				legsBF.animation.addByPrefix('jumpfire', 'jumpfire', 55, true);
+				legsBF.animation.addByPrefix('runsmall', 'runsmall', 30, true);
+				legsBF.animation.addByPrefix('jumpsmall', 'jumpsmall', 55, true);
+				legsBF.animation.addByPrefix('run', 'run0', 30, true);
+				legsBF.animation.addByPrefix('jump', 'jump0', 55, true);
+				legsBF.animation.play('run'+legsPrefix);
 				legsBF.setGraphicSize(Std.int(legsBF.width * 6));
 				legsBF.updateHitbox();
 				legsBF.scrollFactor.set(1, 1);
@@ -568,10 +582,18 @@ class Stage extends FlxTypedGroup<FlxBasic>
 		{
 			case 'pcport':
 				PlayState.legFrame = legs.animation.curAnim.curFrame;
+				PlayState.bfLegFrame = legsBF.animation.curAnim.curFrame;
 				if (PlayState.isChase)
 				{
 					if (chaseBG.visible == false)
 					{
+						var flagPole:FNFSprite = new FNFSprite(0, 0).loadGraphic(Paths.image('backgrounds/' + curStage + '/flagpole'), false, 160, 81);
+						flagPole.scrollFactor.set(1, 1);
+						flagPole.antialiasing = false;
+						flagPole.setGraphicSize(Std.int(flagPole.width * 6));
+						flagPole.updateHitbox();
+						backgroundsArray['flagPole'] = flagPole;
+						add(flagPole);
 						legs.setPosition(dadOpponent.x - 126 - 58, dadOpponent.y - 88 + 2 - 48 - 13);
 						legsBF.setPosition(boyfriend.x - 2.9 - (19 * 6), boyfriend.y - (20 * 6) + 2.9 - 6);
 						
@@ -612,6 +634,9 @@ class Stage extends FlxTypedGroup<FlxBasic>
 					if (chaseBGPos.x >= 0)
 					{
 						chaseBGPos.x = -956.95 * 6;
+						
+						if (backgroundsArray['flagPole'] != null)
+							backgroundsArray['flagPole'].kill();
 						if (curStep > 2317)
 						{
 							var endingPipe:FNFSprite = new FNFSprite(0, 0).loadGraphic(Paths.image('backgrounds/' + curStage + '/endpipe'), false, 160, 81);
@@ -637,6 +662,8 @@ class Stage extends FlxTypedGroup<FlxBasic>
 					chaseBG.x = Std.int(chaseBGPos.x / 6) * 6;
 					if (pipeEnd)
 						backgroundsArray['pipe'].x = chaseBG.x;
+					if (backgroundsArray['flagPole'] != null)
+						backgroundsArray['flagPole'].x = chaseBG.x;
 					trace(chaseBG.x);
 					
 					if (!pipeEnd)
@@ -646,7 +673,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
 							if (chaseBG.x == bfJumpBrick[i] && !jumpedBrick)
 							{
 								jumpedBrick = true;
-								legsBF.animation.play('jump', true);
+								legsBF.animation.play('jump'+legsPrefix, true);
 								FlxTween.tween(bfPos, { y: bfTarget.y }, 0.5, {ease: FlxEase.sineOut, onComplete: jumpFallBF});
 								FlxTween.tween(BFlegsPos, { y: BFlegsTarget.y }, 0.5, {ease: FlxEase.sineOut, onComplete: jumpFalllegsBF});
 								if (boyfriend.animation.curAnim.name == 'idle')
@@ -660,7 +687,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
 							if (chaseBG.x == bfJumpGap1[i] && !jumpedGap1)
 							{
 								jumpedGap1 = true;
-								legsBF.animation.play('jump', true);
+								legsBF.animation.play('jump'+legsPrefix, true);
 								FlxTween.tween(bfPos, { y: (bfTarget.y + 15 * 6) }, 0.5, {ease: FlxEase.sineOut, onComplete: jumpFallBF});
 								FlxTween.tween(BFlegsPos, { y: (BFlegsTarget.y + 15 * 6)}, 0.5, {ease: FlxEase.sineOut, onComplete: jumpFalllegsBF});
 								if (boyfriend.animation.curAnim.name == 'idle')
@@ -674,7 +701,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
 							if (chaseBG.x == bfJumpGap2[i] && !jumpedGap2)
 							{
 								jumpedGap2 = true;
-								legsBF.animation.play('jump', true);
+								legsBF.animation.play('jump'+legsPrefix, true);
 								FlxTween.tween(bfPos, { y: (bfTarget.y + 25 * 6) }, 0.3, {ease: FlxEase.sineOut, onComplete: bfFallFast});
 								FlxTween.tween(BFlegsPos, { y: (BFlegsTarget.y + 25 * 6)}, 0.3, {ease: FlxEase.sineOut, onComplete: legsFallFast});
 								if (boyfriend.animation.curAnim.name == 'idle')
@@ -688,7 +715,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
 							if (chaseBG.x == bfJumpPipe[i] && !jumpedPipe)
 							{
 								jumpedPipe = true;
-								legsBF.animation.play('jump', true);
+								legsBF.animation.play('jump'+legsPrefix, true);
 								FlxTween.tween(bfPos, { y: (bfTarget.y + 15 * 6) }, 0.3, {ease: FlxEase.sineOut, onComplete: bfFallFast});
 								FlxTween.tween(BFlegsPos, { y: (BFlegsTarget.y + 15 * 6) }, 0.3, {ease: FlxEase.sineOut, onComplete: legsFallFast});
 								if (boyfriend.animation.curAnim.name == 'idle')
@@ -727,6 +754,8 @@ class Stage extends FlxTypedGroup<FlxBasic>
 							}
 						}
 					}
+					
+					legsBF.alpha = boyfriend.alpha;
 					
 					boyfriend.y = bfPos.y;
 					legsBF.y = BFlegsPos.y;
@@ -859,7 +888,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
 		FlxTween.tween(BFlegsPos, { y: BFlegsDefPos.y}, 0.5, {ease: FlxEase.sineIn, onComplete: 
 			function(tween:FlxTween)
 			{
-				legsBF.animation.play('idle', true);
+				legsBF.animation.play('run'+legsPrefix, true, false, PlayState.bfLegFrame);
 			}
 		});
 	}
@@ -883,7 +912,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
 		FlxTween.tween(BFlegsPos, { y: BFlegsDefPos.y}, 0.3, {ease: FlxEase.sineIn, onComplete: 
 			function(tween:FlxTween)
 			{
-				legsBF.animation.play('idle', true);
+				legsBF.animation.play('run'+legsPrefix, true, false, PlayState.bfLegFrame);
 			}
 		});
 	}

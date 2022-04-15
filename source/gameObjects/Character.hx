@@ -219,20 +219,20 @@ class Character extends FNFSprite
 
 				flipX = true;
 			case 'bf-chase':
-				frames = Paths.getSparrowAtlas('characters/bf');
-				animation.addByPrefix('idle', 'idle', 12, false);
-				animation.addByPrefix('singUP', 'up0', 12, false);
-				animation.addByPrefix('singLEFT', 'left0', 12, false);
-				animation.addByPrefix('singRIGHT', 'right0', 12, false);
-				animation.addByPrefix('singDOWN', 'down0', 12, false);
-				animation.addByPrefix('singUPmiss', 'up0', 12, false);
-				animation.addByPrefix('singLEFTmiss', 'left0', 12, false);
-				animation.addByPrefix('singRIGHTmiss', 'right0', 12, false);
-				animation.addByPrefix('singDOWNmiss', 'down0', 12, false);
+				frames = Paths.getSparrowAtlas('characters/bf-chase');
+				animation.addByPrefix('idle', 'idle', 30, true);
+				animation.addByPrefix('jump', 'jump', 30, true);
+				animation.addByPrefix('singUP', 'up0', 30, false);
+				animation.addByPrefix('singLEFT', 'left0', 30, false);
+				animation.addByPrefix('singRIGHT', 'right0', 30, false);
+				animation.addByPrefix('singDOWN', 'down0', 30, false);
+				animation.addByPrefix('singUPmiss', 'up0', 30, false);
+				animation.addByPrefix('singLEFTmiss', 'left0', 30, false);
+				animation.addByPrefix('singRIGHTmiss', 'right0', 30, false);
+				animation.addByPrefix('singDOWNmiss', 'down0', 30, false);
 
-				animation.addByPrefix('run', 'run', 12, true);
-				animation.addByPrefix('skid', 'skid', 12, true);
-
+				addOffset('idle', 0, -6);
+				
 				setGraphicSize(Std.int(width * 6));
 				updateHitbox();
 
@@ -243,19 +243,21 @@ class Character extends FNFSprite
 				flipX = true;
 
 			case 'bf-chase-small':
-				frames = Paths.getSparrowAtlas('characters/bf-small');
-				animation.addByPrefix('idle', 'idle', 12, false);
-				animation.addByPrefix('singUP', 'up0', 12, false);
-				animation.addByPrefix('singLEFT', 'left0', 12, false);
-				animation.addByPrefix('singRIGHT', 'right0', 12, false);
-				animation.addByPrefix('singDOWN', 'down0', 12, false);
-				animation.addByPrefix('singUPmiss', 'up0', 12, false);
-				animation.addByPrefix('singLEFTmiss', 'left0', 12, false);
-				animation.addByPrefix('singRIGHTmiss', 'right0', 12, false);
-				animation.addByPrefix('singDOWNmiss', 'down0', 12, false);
-
-				animation.addByPrefix('run', 'run', 12, true);
-				animation.addByPrefix('skid', 'skid', 12, true);
+				frames = Paths.getSparrowAtlas('characters/bf-chase-small');
+				animation.addByPrefix('idle', 'idle', 30, true);
+				animation.addByPrefix('jump', 'jump', 30, true);
+				animation.addByPrefix('singUP', 'up0', 30, false);
+				animation.addByPrefix('singLEFT', 'left0', 30, false);
+				animation.addByPrefix('singRIGHT', 'right0', 30, false);
+				animation.addByPrefix('singDOWN', 'down0', 30, false);
+				animation.addByPrefix('singUPmiss', 'up0', 30, false);
+				animation.addByPrefix('singLEFTmiss', 'left0', 30, false);
+				animation.addByPrefix('singRIGHTmiss', 'right0', 30, false);
+				animation.addByPrefix('singDOWNmiss', 'down0', 30, false);
+				
+				addOffset('idle', 0, -6);
+				addOffset('singUP', 0, -4);
+				addOffset('singUPmiss', 0, -4);
 
 				setGraphicSize(Std.int(width * 6));
 				updateHitbox();
@@ -277,6 +279,8 @@ class Character extends FNFSprite
 				animation.addByPrefix('singLEFTmiss', 'left0', 30, false);
 				animation.addByPrefix('singRIGHTmiss', 'right0', 30, false);
 				animation.addByPrefix('singDOWNmiss', 'down0', 30, false);
+				
+				addOffset('idle', 0, -6);
 
 				setGraphicSize(Std.int(width * 6));
 				updateHitbox();
@@ -287,19 +291,16 @@ class Character extends FNFSprite
 
 				flipX = true;
 			case 'bf-wall':
-				frames = Paths.getSparrowAtlas('characters/bf');
-				animation.addByPrefix('idle', 'idle', 12, false);
-				animation.addByPrefix('singUP', 'up0', 12, false);
-				animation.addByPrefix('singLEFT', 'left0', 12, false);
-				animation.addByPrefix('singRIGHT', 'right0', 12, false);
-				animation.addByPrefix('singDOWN', 'down0', 12, false);
-				animation.addByPrefix('singUPmiss', 'up0', 12, false);
-				animation.addByPrefix('singLEFTmiss', 'left0', 12, false);
-				animation.addByPrefix('singRIGHTmiss', 'right0', 12, false);
-				animation.addByPrefix('singDOWNmiss', 'down0', 12, false);
-
-				animation.addByPrefix('run', 'run', 12, true);
-				animation.addByPrefix('skid', 'skid', 12, true);
+				frames = Paths.getSparrowAtlas('characters/bf-wall');
+				animation.addByPrefix('idle', 'idle', 40, false);
+				animation.addByPrefix('singUP', 'up0', 40, false);
+				animation.addByPrefix('singLEFT', 'left0', 40, false);
+				animation.addByPrefix('singRIGHT', 'right0', 40, false);
+				animation.addByPrefix('singDOWN', 'down0', 40, false);
+				animation.addByPrefix('singUPmiss', 'up0', 40, false);
+				animation.addByPrefix('singLEFTmiss', 'left0', 40, false);
+				animation.addByPrefix('singRIGHTmiss', 'right0', 40, false);
+				animation.addByPrefix('singDOWNmiss', 'down0', 40, false);
 
 				setGraphicSize(Std.int(width * 6));
 				updateHitbox();
@@ -311,19 +312,16 @@ class Character extends FNFSprite
 				flipX = true;
 
 			case 'bf-wall-small':
-				frames = Paths.getSparrowAtlas('characters/bf-small');
-				animation.addByPrefix('idle', 'idle', 12, false);
-				animation.addByPrefix('singUP', 'up0', 12, false);
-				animation.addByPrefix('singLEFT', 'left0', 12, false);
-				animation.addByPrefix('singRIGHT', 'right0', 12, false);
-				animation.addByPrefix('singDOWN', 'down0', 12, false);
-				animation.addByPrefix('singUPmiss', 'up0', 12, false);
-				animation.addByPrefix('singLEFTmiss', 'left0', 12, false);
-				animation.addByPrefix('singRIGHTmiss', 'right0', 12, false);
-				animation.addByPrefix('singDOWNmiss', 'down0', 12, false);
-
-				animation.addByPrefix('run', 'run', 12, true);
-				animation.addByPrefix('skid', 'skid', 12, true);
+				frames = Paths.getSparrowAtlas('characters/bf-wall-small');
+				animation.addByPrefix('idle', 'idle', 40, false);
+				animation.addByPrefix('singUP', 'up0', 40, false);
+				animation.addByPrefix('singLEFT', 'left0', 40, false);
+				animation.addByPrefix('singRIGHT', 'right0', 40, false);
+				animation.addByPrefix('singDOWN', 'down0', 40, false);
+				animation.addByPrefix('singUPmiss', 'up0', 40, false);
+				animation.addByPrefix('singLEFTmiss', 'left0', 40, false);
+				animation.addByPrefix('singRIGHTmiss', 'right0', 40, false);
+				animation.addByPrefix('singDOWNmiss', 'down0', 40, false);
 
 				setGraphicSize(Std.int(width * 6));
 				updateHitbox();
@@ -1367,6 +1365,8 @@ class Character extends FNFSprite
 			var curCharSimplified:String = simplifyCharacter();
 			if (curCharSimplified == 'mx')
 			frame = PlayState.legFrame;
+			if (curCharSimplified.startsWith('bf-chase'))
+			frame = PlayState.bfLegFrame;
 			switch (curCharSimplified)
 			{
 				case 'gf':

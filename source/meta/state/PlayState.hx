@@ -154,6 +154,7 @@ class PlayState extends MusicBeatState
 	private var stageBuild:Stage;
 	
 	public static var legFrame:Int = 0;
+	public static var bfLegFrame:Int = 0;
 
 	public static var uiHUD:ClassHUD;
 	public static var gameboyHUD:GameboyHUD;
@@ -2201,6 +2202,21 @@ class PlayState extends MusicBeatState
 			boyfriend2.setCharacter(boyfriend.x + (2 * 6), boyfriend.y + (2 * 6), boyfriend.curCharacter);
 		}
 		boyfriend.playAnim(animation);
+		
+		if (boyfriend.curCharacter.endsWith('fire'))
+			stageBuild.legsPrefix = 'fire';
+		else if (boyfriend.curCharacter.endsWith('small'))
+			stageBuild.legsPrefix = 'small';
+		else
+			stageBuild.legsPrefix = '';
+			
+		var animName:String = '';
+		if (stageBuild.legsBF.animation.name.startsWith('run'))
+			animName = 'run' + stageBuild.legsPrefix;
+		else if (stageBuild.legsBF.animation.name.startsWith('jump'))
+			animName = 'jump'+stageBuild.legsPrefix;
+			
+		stageBuild.legsBF.animation.play(animName, true, false, bfLegFrame);
 	}
 
 	function powerupCall()
@@ -2218,6 +2234,8 @@ class PlayState extends MusicBeatState
 			//persistentDraw = false;
 			paused = true;
 			resetMusic();
+			if (stageBuild.legsBF != null)
+				stageBuild.legsBF.visible = false;
 			openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 		} 
 		else
@@ -2540,7 +2558,9 @@ class PlayState extends MusicBeatState
 			
 			if (curStep == 1532)
 			{
-				camGame.visible = false;
+				dadOpponent.visible = false;
+				stageBuild.luigi.visible = true;
+				camHUD.visible = false;
 				stageBuild.switchScene();
 				dadOpponent.setCharacter(0, 0, "mxbig");
 				dadOpponent.setPosition(dadOpponent.width/2-(16*6)-2, dadOpponent.height/2-(8*6)+1);
@@ -2554,18 +2574,20 @@ class PlayState extends MusicBeatState
 			
 			if (curStep == 1536)
 			{
-				camGame.visible = true;
+				camHUD.visible = true;
+				stageBuild.luigi.visible = false;
+				dadOpponent.visible = true;
 			}
 			
 			if (curStep == 2034)
 			{
 				camGame.visible = false;
-				stageBuild.switchScene(false);
 				dadOpponent.setCharacter(stageBuild.mxDefPos.x, stageBuild.mxDefPos.y, "mx");
 				
 				boyfriend.setPosition(stageBuild.bfDefPos.x, stageBuild.bfDefPos.y);
 				bfPrefix = 'bf-chase';
 				powerupVisuals(boyfriend.animation.name);
+				stageBuild.switchScene(false);
 			}
 			
 			if (curStep == 2048)
@@ -2576,6 +2598,7 @@ class PlayState extends MusicBeatState
 			if (curStep == 2344)
 			{
 				isChase = false;
+				boyfriend.dance(true);
 				dadOpponent.animation.curAnim.pause();
 				boyfriend.animation.curAnim.pause();
 				stageBuild.legs.animation.curAnim.pause();

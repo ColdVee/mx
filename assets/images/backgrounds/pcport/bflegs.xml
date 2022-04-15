@@ -2,17 +2,43 @@
 <TextureAtlas imagePath="bflegs.png">
 	<!-- Created with Adobe Animate version 20.0.3.25487 -->
 	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="legjump0000" x="20" y="20" width="44" height="47"/>
-	<SubTexture name="legs0000" x="84" y="20" width="44" height="47"/>
-	<SubTexture name="legs0001" x="84" y="20" width="44" height="47"/>
-	<SubTexture name="legs0002" x="84" y="20" width="44" height="47"/>
-	<SubTexture name="legs0003" x="148" y="20" width="44" height="47"/>
-	<SubTexture name="legs0004" x="148" y="20" width="44" height="47"/>
-	<SubTexture name="legs0005" x="148" y="20" width="44" height="47"/>
-	<SubTexture name="legs0006" x="20" y="87" width="44" height="47"/>
-	<SubTexture name="legs0007" x="20" y="87" width="44" height="47"/>
-	<SubTexture name="legs0008" x="20" y="87" width="44" height="47"/>
-	<SubTexture name="legs0009" x="84" y="87" width="44" height="47"/>
-	<SubTexture name="legs0010" x="84" y="87" width="44" height="47"/>
-	<SubTexture name="legs0011" x="84" y="87" width="44" height="47"/>
+	<SubTexture name="jump0000" x="20" y="20" width="44" height="47"/>
+	<SubTexture name="jumpfire0000" x="276" y="20" width="44" height="47"/>
+	<SubTexture name="jumpsmall0000" x="148" y="87" width="44" height="47"/>
+	<SubTexture name="run0000" x="340" y="20" width="44" height="47"/>
+	<SubTexture name="run0001" x="340" y="20" width="44" height="47"/>
+	<SubTexture name="run0002" x="340" y="20" width="44" height="47"/>
+	<SubTexture name="run0003" x="84" y="20" width="44" height="47"/>
+	<SubTexture name="run0004" x="84" y="20" width="44" height="47"/>
+	<SubTexture name="run0005" x="84" y="20" width="44" height="47"/>
+	<SubTexture name="run0006" x="148" y="20" width="44" height="47"/>
+	<SubTexture name="run0007" x="148" y="20" width="44" height="47"/>
+	<SubTexture name="run0008" x="148" y="20" width="44" height="47"/>
+	<SubTexture name="run0009" x="212" y="20" width="44" height="47"/>
+	<SubTexture name="run0010" x="212" y="20" width="44" height="47"/>
+	<SubTexture name="run0011" x="212" y="20" width="44" height="47"/>
+	<SubTexture name="runfire0000" x="340" y="20" width="44" height="47"/>
+	<SubTexture name="runfire0001" x="340" y="20" width="44" height="47"/>
+	<SubTexture name="runfire0002" x="340" y="20" width="44" height="47"/>
+	<SubTexture name="runfire0003" x="404" y="20" width="44" height="47"/>
+	<SubTexture name="runfire0004" x="404" y="20" width="44" height="47"/>
+	<SubTexture name="runfire0005" x="404" y="20" width="44" height="47"/>
+	<SubTexture name="runfire0006" x="20" y="87" width="44" height="47"/>
+	<SubTexture name="runfire0007" x="20" y="87" width="44" height="47"/>
+	<SubTexture name="runfire0008" x="20" y="87" width="44" height="47"/>
+	<SubTexture name="runfire0009" x="84" y="87" width="44" height="47"/>
+	<SubTexture name="runfire0010" x="84" y="87" width="44" height="47"/>
+	<SubTexture name="runfire0011" x="84" y="87" width="44" height="47"/>
+	<SubTexture name="runsmall0000" x="212" y="87" width="44" height="47"/>
+	<SubTexture name="runsmall0001" x="212" y="87" width="44" height="47"/>
+	<SubTexture name="runsmall0002" x="212" y="87" width="44" height="47"/>
+	<SubTexture name="runsmall0003" x="276" y="87" width="44" height="47"/>
+	<SubTexture name="runsmall0004" x="276" y="87" width="44" height="47"/>
+	<SubTexture name="runsmall0005" x="276" y="87" width="44" height="47"/>
+	<SubTexture name="runsmall0006" x="340" y="87" width="44" height="47"/>
+	<SubTexture name="runsmall0007" x="340" y="87" width="44" height="47"/>
+	<SubTexture name="runsmall0008" x="340" y="87" width="44" height="47"/>
+	<SubTexture name="runsmall0009" x="276" y="87" width="44" height="47"/>
+	<SubTexture name="runsmall0010" x="276" y="87" width="44" height="47"/>
+	<SubTexture name="runsmall0011" x="276" y="87" width="44" height="47"/>
 </TextureAtlas>
