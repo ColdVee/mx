@@ -2551,6 +2551,11 @@ class PlayState extends MusicBeatState
 				stageBuild.mxDefPos = new FlxPoint(dadOpponent.x, dadOpponent.y);
 				stageBuild.mxTarget = new FlxPoint(dadOpponent.x + (64 * 6), dadOpponent.y - (40 * 6));
 				
+				if (powerup == 0)
+				{
+					boyfriend.x += 5;
+					boyfriend.y += 4;
+				}
 				boyfriend.setPosition(boyfriend.x - 27.05, boyfriend.y - 26 - (2 * 6) + 6);
 				bfPrefix = 'bf-chase';
 				powerupVisuals(boyfriend.animation.name);
